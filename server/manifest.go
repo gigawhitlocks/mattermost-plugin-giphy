@@ -5,7 +5,7 @@ var manifest = struct {
 	Name    string
 	Version string
 }{
-	Id:      "com.github.moussetc.mattermost.plugin.giphy",
+	Id:      "business.silly.giphy",
 	Name:    "GIF commands",
-	Version: "1.1.0",
+	Version: "v1.1.1-gigawhitlocks-0.1",
 }

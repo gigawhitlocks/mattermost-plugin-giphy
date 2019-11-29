@@ -57,7 +57,10 @@ func (p *Plugin) executeCommandGif(command string) (*model.CommandResponse, *mod
 	}
 
 	text := generateGifCaption(keywords, gifURL)
-	return &model.CommandResponse{ResponseType: model.COMMAND_RESPONSE_TYPE_IN_CHANNEL, Text: text}, nil
+	return &model.CommandResponse{
+		ResponseType: model.COMMAND_RESPONSE_TYPE_IN_CHANNEL,
+		Text:         text,
+	}, nil
 }
 
 // executeCommandGifShuffle returns an ephemeral (private) post with one GIF that can either be posted, shuffled or canceled
@@ -69,14 +72,18 @@ func (p *Plugin) executeCommandGifShuffle(command string, args *model.CommandArg
 		return nil, err
 	}
 
-	text := generateGifCaption(keywords, gifURL)
+	text := generateGifsCaption(keywords, gifURL)
 	attachments := generateShufflePostAttachments(p, keywords, gifURL, cursor)
 
 	return &model.CommandResponse{ResponseType: model.COMMAND_RESPONSE_TYPE_EPHEMERAL, Text: text, Attachments: attachments}, nil
 }
 
-func generateGifCaption(keywords string, gifURL string) string {
+func generateGifsCaption(keywords string, gifURL string) string {
 	return " */gif [" + keywords + "](" + gifURL + ")*\n" + "![GIF for '" + keywords + "'](" + gifURL + ")"
+}
+
+func generateGifCaption(keywords string, gifURL string) string {
+	return " */gif [" + keywords + "](" + gifURL + ")*\n" + gifURL
 }
 
 func generateShufflePostAttachments(p *Plugin, keywords string, gifURL string, cursor string) []*model.SlackAttachment {

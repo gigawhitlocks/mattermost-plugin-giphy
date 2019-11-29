@@ -1,7 +1,11 @@
+# Ian's Fork
+I just prefer that GIF URLs be printed in the channel so I've hacked this in.
+Otherwise this is a fork of https://github.com/moussetc/mattermost-plugin-giphy
+
 # Mattermost GIF commands plugin (ex 'GIPHY plugin')
 This Mattermost plugin adds slash commands to get GIFs from either GIPHY or Gfycat:
-- `/gif <keywords>` will post one GIF matching the keywords 
-- `/gifs <keywords>` will post a private preview of a GIF matching the keywords, and allows you to shuffle it a number of times before making it public. 
+- `/gif <keywords>` will post one GIF matching the keywords
+- `/gifs <keywords>` will post a private preview of a GIF matching the keywords, and allows you to shuffle it a number of times before making it public.
 **This command will not work on mobile app until this [Mattermost issue](https://github.com/mattermost/mattermost-mobile/issues/2807) is resolved.**
 
 *No webhooks or additional installation required.*
@@ -19,37 +23,37 @@ This Mattermost plugin adds slash commands to get GIFs from either GIPHY or Gfyc
 3. Go to the `System Console > Plugins > GIF commands` configuration page that appeared, and choose if you want to use GIPHY (API key required, see below) or Gfycat.
 4. If you've chosen GIPHY, configure the Giphy API key. The default key is the [public beta key](https://developers.giphy.com/docs/) which is subject to rate limit constraints and thus might not work at any given time: **it must be changed**.
 4. You can also configure the following settings :
-    - display size (for both GIPHY and Gfycat, see [Giphy rendition guide](https://developers.giphy.com/docs/#rendition-guide))
-    - rating (GIPHY only)
-    - language (GIPHY only, see [Giphy Language support](https://developers.giphy.com/docs/#rendition-guide))
+	- display size (for both GIPHY and Gfycat, see [Giphy rendition guide](https://developers.giphy.com/docs/#rendition-guide))
+	- rating (GIPHY only)
+	- language (GIPHY only, see [Giphy Language support](https://developers.giphy.com/docs/#rendition-guide))
 4. **Activate the plugin** in the `System Console > Plugins Management > Management` page
 
 ## Manual configuration
 If you need to enable & configure this plugin directly in the Mattermost configuration file `config.json`, for example if you are doing a [High Availability setup](https://docs.mattermost.com/deployment/cluster.html), you can use the following lines (remember to set the API key!):
 ```json
  "PluginSettings": {
-        // [...]
-        "Plugins": {
-            "com.github.moussetc.mattermost.plugin.giphy": {
+		// [...]
+		"Plugins": {
+			"com.github.moussetc.mattermost.plugin.giphy": {
 		"provider": "giphy",
-                "apikey": "YOUR_GIPHY_API_KEY_HERE", 
-                "language": "en",
-                "rating": "",
-                "rendition": "fixed_height_small"
+				"apikey": "YOUR_GIPHY_API_KEY_HERE",
+				"language": "en",
+				"rating": "",
+				"rendition": "fixed_height_small"
 		"renditionGfycat": "100pxGif"
-            },
-        },
-        "PluginStates": {
-            // [...]
-            "com.github.moussetc.mattermost.plugin.giphy": {
-                "Enable": true
-            },
-        }
-    }
+			},
+		},
+		"PluginStates": {
+			// [...]
+			"com.github.moussetc.mattermost.plugin.giphy": {
+				"Enable": true
+			},
+		}
+	}
 ```
 
 ## TROUBLESHOOTING
-### I can't upload or activate the plugin 
+### I can't upload or activate the plugin
 - Is your plugin version compatible with your server version? Check the Compatibility section in the README.
 - Make sure you have configured the SiteURL setting correctly in the Mattermost administration panel.
 - Check the Mattermost logs (`yourURL/admin_console/logs`) for more detail on why the activation failed.

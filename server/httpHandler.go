@@ -116,7 +116,7 @@ func (h *defaultHTTPHandler) handleShuffle(p *Plugin, w http.ResponseWriter, r *
 		Id:        request.PostId,
 		ChannelId: request.ChannelId,
 		UserId:    request.UserId,
-		Message:   generateGifCaption(keywords, shuffledGifURL),
+		Message:   generateGifsCaption(keywords, shuffledGifURL),
 		Props: map[string]interface{}{
 			"attachments": generateShufflePostAttachments(p, keywords, shuffledGifURL, cursor),
 		},
